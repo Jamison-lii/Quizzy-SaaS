@@ -14,6 +14,25 @@ const AboutPage: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document
+      .querySelectorAll('.reveal')
+      .forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0B0F1A] text-[#E5E7EB] selection:bg-[#8B5CF6] selection:text-white">
       <Navbar scrolled={scrolled} />
@@ -21,8 +40,8 @@ const AboutPage: React.FC = () => {
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6">
 
-          {/* Page Header */}
-          <header className="text-center mb-20">
+          {/* Header */}
+          <header className="text-center mb-20 reveal">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               About <span className="text-[#8B5CF6]">Quizzy</span>
             </h1>
@@ -35,9 +54,9 @@ const AboutPage: React.FC = () => {
           <div className="max-w-5xl mx-auto space-y-20">
 
             {/* Mission */}
-            <section className="bg-[#111827] border border-[#1F2937] rounded-2xl p-8">
+            <section className="reveal heartbeat-box bg-[#111827] border border-[#1F2937] rounded-2xl p-8 hover:shadow-[0_20px_50px_-15px_rgba(139,92,246,0.25)] transition">
               <div className="flex items-center gap-4 mb-4">
-                <Target className="text-[#8B5CF6]" size={32} />
+                <Target className="text-[#8B5CF6] float-icon" size={32} />
                 <h2 className="text-2xl font-semibold text-white">Our Mission</h2>
               </div>
               <p className="text-[#9CA3AF] text-lg leading-relaxed">
@@ -48,9 +67,9 @@ const AboutPage: React.FC = () => {
             </section>
 
             {/* Vision */}
-            <section className="bg-[#111827] border border-[#1F2937] rounded-2xl p-8">
+            <section className="reveal heartbeat-box heartbeat-delay-1 bg-[#111827] border border-[#1F2937] rounded-2xl p-8 hover:shadow-[0_20px_50px_-15px_rgba(139,92,246,0.25)] transition">
               <div className="flex items-center gap-4 mb-4">
-                <Eye className="text-[#8B5CF6]" size={32} />
+                <Eye className="text-[#8B5CF6] float-icon" size={32} />
                 <h2 className="text-2xl font-semibold text-white">Our Vision</h2>
               </div>
               <p className="text-[#9CA3AF] text-lg leading-relaxed">
@@ -60,9 +79,9 @@ const AboutPage: React.FC = () => {
             </section>
 
             {/* Values */}
-            <section>
+            <section className="reveal">
               <div className="flex items-center gap-4 mb-8">
-                <Heart className="text-[#8B5CF6]" size={32} />
+                <Heart className="text-[#8B5CF6] float-icon" size={32} />
                 <h2 className="text-2xl font-semibold text-white">Our Values</h2>
               </div>
 
@@ -72,16 +91,23 @@ const AboutPage: React.FC = () => {
                   { icon: Target, title: 'Innovation', text: 'Continuously improving how people learn through smart technology.' },
                   { icon: Heart, title: 'Community', text: 'Building learning experiences that connect and inspire learners.' },
                   { icon: Eye, title: 'Excellence', text: 'Delivering meaningful outcomes, not just features.' },
-                ].map(({ icon: Icon, title, text }) => (
+                ].map(({ icon: Icon, title, text }, i) => (
                   <div
                     key={title}
-                    className="bg-[#111827] border border-[#1F2937] rounded-xl p-6"
+                    className={`reveal heartbeat-box heartbeat-delay-${i + 1}
+                      bg-[#111827] border border-[#1F2937] rounded-xl p-6
+                      transition-all duration-300
+                      hover:-translate-y-1 hover:border-[#8B5CF6]/40
+                      hover:shadow-[0_20px_40px_-15px_rgba(139,92,246,0.3)]`}
+                    style={{ transitionDelay: `${i * 80}ms` }}
                   >
                     <div className="flex items-start gap-3">
-                      <Icon className="text-[#8B5CF6] mt-1" size={22} />
+                      <Icon className="text-[#8B5CF6] mt-1 float-icon" size={22} />
                       <div>
                         <h3 className="font-semibold mb-1 text-white">{title}</h3>
-                        <p className="text-[#9CA3AF] text-sm leading-relaxed">{text}</p>
+                        <p className="text-[#9CA3AF] text-sm leading-relaxed">
+                          {text}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -90,7 +116,7 @@ const AboutPage: React.FC = () => {
             </section>
 
             {/* Team */}
-            <section className="mt-28">
+            <section className="reveal mt-28">
               <h2 className="text-2xl font-semibold text-center mb-10 text-white">
                 Our Team
               </h2>
@@ -103,7 +129,7 @@ const AboutPage: React.FC = () => {
             </section>
 
             {/* Interns */}
-            <section className="mt-28">
+            <section className="reveal mt-28">
               <h2 className="text-2xl font-semibold text-center mb-10 text-white">
                 Our Interns
               </h2>
@@ -119,6 +145,7 @@ const AboutPage: React.FC = () => {
                 <TeamCard name="Kambi Marcbryan" role="DevOps Intern" />
               </Marquee>
             </section>
+
           </div>
         </div>
       </main>
@@ -141,6 +168,53 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* Animations */}
+      <style>{`
+        .reveal {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.animate-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+        }
+
+        .float-icon {
+          animation: float 4s ease-in-out infinite;
+        }
+
+        /* HEARTBEAT EFFECT (ADDITIVE) */
+        @keyframes heartbeat {
+          0%   { transform: scale(1); }
+          14%  { transform: scale(1.015); }
+          28%  { transform: scale(1); }
+          42%  { transform: scale(1.015); }
+          70%  { transform: scale(1); }
+          100% { transform: scale(1); }
+        }
+
+        .heartbeat-box {
+          animation: heartbeat 5.5s ease-in-out infinite;
+          transform-origin: center;
+        }
+
+        .heartbeat-box:hover {
+          animation-play-state: paused;
+        }
+
+        .heartbeat-delay-1 { animation-delay: 0.4s; }
+        .heartbeat-delay-2 { animation-delay: 0.8s; }
+        .heartbeat-delay-3 { animation-delay: 1.2s; }
+        .heartbeat-delay-4 { animation-delay: 1.6s; }
+      `}</style>
     </div>
   );
 };

@@ -1,6 +1,4 @@
-
 import React from 'react';
-import { Apple, Github, Slack, Database, Twitch, Triangle } from 'lucide-react';
 
 const TrustedBy: React.FC = () => {
  const logos = [
@@ -10,9 +8,9 @@ const TrustedBy: React.FC = () => {
   { name: "RHIMBS" },
 ];
   return (
-    <section className="py-20 bg-white border-y border-slate-50 overflow-hidden">
+    <section className="py-20 bg-slate-900 overflow-hidden">
       <div className="container mx-auto px-4">
-        <h4 className="text-center text-2xl font-bold text-slate-900 mb-16">
+        <h4 className="text-center text-2xl font-bold text-white mb-16">
           The world's best companies trust QuizzyAI.
         </h4>
         
@@ -23,7 +21,7 @@ const TrustedBy: React.FC = () => {
               className="flex items-center gap-2 hover:opacity-100 transition-opacity cursor-default animate-in fade-in zoom-in-50 duration-700"
               style={{ animationDelay: `${i * 0.1}s` }}
             >
-             {/*logo can be here */}
+             <span className="text-white font-bold">{logo.name}</span>
             </div>
           ))}
         </div>

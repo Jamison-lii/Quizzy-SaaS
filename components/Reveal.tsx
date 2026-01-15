@@ -13,20 +13,20 @@ const Reveal: React.FC<RevealProps> = ({ children, className = '' }) => {
     const el = ref.current;
     if (!el) return;
 
-    const obs = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setVisible(true);
-            obs.unobserve(entry.target);
+            observer.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.12 }
     );
 
-    obs.observe(el);
-    return () => obs.disconnect();
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (

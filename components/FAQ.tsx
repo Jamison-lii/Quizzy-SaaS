@@ -22,19 +22,26 @@ const faqs = [
 
 const FAQ: React.FC = () => {
   return (
-    <section id="faq" className="py-20 bg-white">
+    <section id="faq" className="py-24 bg-slate-900">
       <div className="container mx-auto px-4">
-        <Reveal className="max-w-3xl mx-auto text-center mb-8">
-          <h3 className="text-2xl font-bold text-slate-900">Frequently asked questions</h3>
-          <p className="text-slate-500 mt-2">Answers to common questions about Quizzy and downloads.</p>
+        {/* Section Header */}
+        <Reveal className="max-w-3xl mx-auto text-center mb-12">
+          <h3 className="text-3xl md:text-4xl font-bold text-white">Frequently Asked Questions</h3>
+          <p className="text-slate-400 mt-3 text-lg">
+            Answers to the most common questions about Quizzy and its features.
+          </p>
         </Reveal>
 
-        <div className="max-w-4xl mx-auto space-y-4 mt-6">
+        {/* FAQ Items */}
+        <div className="max-w-4xl mx-auto space-y-4">
           {faqs.map((f, i) => (
-            <Reveal key={i} className="">
-              <details className="p-5 rounded-2xl bg-slate-50 border border-slate-100">
-                <summary className="font-semibold text-slate-900 cursor-pointer">{f.q}</summary>
-                <div className="mt-3 text-slate-500 text-sm">{f.a}</div>
+            <Reveal key={i}>
+              <details className="group p-6 rounded-2xl bg-slate-800 border border-slate-700 shadow-md hover:shadow-lg transition-shadow duration-300">
+                <summary className="font-semibold text-white cursor-pointer list-none flex justify-between items-center">
+                  {f.q}
+                  <span className="transition-transform duration-300 group-open:rotate-45 inline-block text-[#7C3AED]">+</span>
+                </summary>
+                <div className="mt-3 text-slate-400 text-sm">{f.a}</div>
               </details>
             </Reveal>
           ))}

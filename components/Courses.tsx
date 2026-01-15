@@ -24,25 +24,35 @@ const sampleCourses = [
 
 const Courses: React.FC = () => {
   return (
-    <section id="courses" className="py-20 bg-white">
+    <section id="courses" className="py-28 bg-slate-900">
       <div className="container mx-auto px-4">
-        <Reveal className="max-w-3xl mx-auto text-center mb-10">
-          <h2 className="text-3xl font-bold text-slate-900">Courses built for results</h2>
-          <p className="text-slate-500 mt-3">A curated library of courses with video lessons, quizzes, and downloadable resources for offline learning.</p>
+        {/* Section Header */}
+        <Reveal className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Courses Built for Results
+          </h2>
+          <p className="text-slate-400 mt-3">
+            A curated library of courses with video lessons, quizzes, and downloadable resources for offline learning.
+          </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-8">
-          {sampleCourses.map((c, i) => (
-            <Reveal key={i} className="">
-              <div className="p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow h-full flex flex-col justify-between">
+        {/* Courses Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-10">
+          {sampleCourses.map((course, i) => (
+            <Reveal key={i}>
+              <div className="p-6 rounded-2xl border border-slate-700 shadow-md hover:shadow-xl transition-shadow h-full flex flex-col justify-between bg-slate-800">
                 <div>
-                  <h3 className="font-bold text-lg text-slate-900">{c.title}</h3>
-                  <p className="text-sm text-slate-500 mt-2">{c.desc}</p>
+                  <h3 className="font-bold text-lg md:text-xl text-white">{course.title}</h3>
+                  <p className="text-sm md:text-base text-slate-400 mt-3">{course.desc}</p>
                 </div>
 
                 <div className="mt-6 flex items-center justify-between">
-                  <div className="text-xs text-slate-400">{c.lessons} lessons • {c.duration}</div>
-                  <button className="bg-violet-600 text-white px-4 py-2 rounded-full text-sm">Download</button>
+                  <div className="text-xs md:text-sm text-slate-500">
+                    {course.lessons} lessons • {course.duration}
+                  </div>
+                  <button className="bg-gradient-to-r from-[#7C3AED] to-[#4F46E5] text-white px-5 py-2 rounded-full text-sm md:text-base font-medium hover:from-[#9D4EDD] hover:to-[#6366F1] transition-colors">
+                    Download
+                  </button>
                 </div>
               </div>
             </Reveal>

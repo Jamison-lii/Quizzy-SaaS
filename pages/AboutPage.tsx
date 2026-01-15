@@ -2,171 +2,141 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { Target, Eye, Heart, Users } from 'lucide-react';
-import Marquee from "@/components/Marquee";
-import { TeamCard } from "@/components/TeamCard";
+import Marquee from '@/components/Marquee';
+import { TeamCard } from '@/components/TeamCard';
 
 const AboutPage: React.FC = () => {
   const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="min-h-screen selection:bg-blue-100 selection:text-[#0A2540]">
+    <div className="min-h-screen bg-[#0B0F1A] text-[#E5E7EB] selection:bg-[#8B5CF6] selection:text-white">
       <Navbar scrolled={scrolled} />
-      <main className="pt-32 pb-20">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-[#0A2540] text-center mb-12">About QuizzyAI</h1>
 
-          <div className="max-w-4xl mx-auto space-y-12">
-            <section>
+      <main className="pt-32 pb-24">
+        <div className="container mx-auto px-6">
+
+          {/* Page Header */}
+          <header className="text-center mb-20">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              About <span className="text-[#8B5CF6]">Quizzy</span>
+            </h1>
+            <p className="max-w-2xl mx-auto text-[#9CA3AF] text-lg">
+              We’re building smarter ways to learn—powered by technology,
+              driven by curiosity, and designed for real results.
+            </p>
+          </header>
+
+          <div className="max-w-5xl mx-auto space-y-20">
+
+            {/* Mission */}
+            <section className="bg-[#111827] border border-[#1F2937] rounded-2xl p-8">
               <div className="flex items-center gap-4 mb-4">
-                <Target className="text-violet-600" size={32} />
-                <h2 className="text-2xl font-bold text-slate-900">Our Mission</h2>
+                <Target className="text-[#8B5CF6]" size={32} />
+                <h2 className="text-2xl font-semibold text-white">Our Mission</h2>
               </div>
-              <p className="text-slate-500 text-lg">
-                To democratize education by providing accessible, personalized learning experiences powered by AI, helping learners of all ages achieve their full potential.
+              <p className="text-[#9CA3AF] text-lg leading-relaxed">
+                To make learning more effective and accessible by delivering
+                personalized, AI-powered quiz experiences that help learners
+                truly understand and retain knowledge.
               </p>
             </section>
 
-            <section>
+            {/* Vision */}
+            <section className="bg-[#111827] border border-[#1F2937] rounded-2xl p-8">
               <div className="flex items-center gap-4 mb-4">
-                <Eye className="text-violet-600" size={32} />
-                <h2 className="text-2xl font-bold text-slate-900">Our Vision</h2>
+                <Eye className="text-[#8B5CF6]" size={32} />
+                <h2 className="text-2xl font-semibold text-white">Our Vision</h2>
               </div>
-              <p className="text-slate-500 text-lg">
-                A world where learning is adaptive, engaging, and available to everyone, anywhere, transforming how people acquire knowledge and skills.
+              <p className="text-[#9CA3AF] text-lg leading-relaxed">
+                A future where education is adaptive, engaging, and available
+                to everyone—no matter where they are or how they learn.
               </p>
             </section>
 
+            {/* Values */}
             <section>
-              <div className="flex items-center gap-4 mb-4">
-                <Heart className="text-violet-600" size={32} />
-                <h2 className="text-2xl font-bold text-slate-900">Our Values</h2>
+              <div className="flex items-center gap-4 mb-8">
+                <Heart className="text-[#8B5CF6]" size={32} />
+                <h2 className="text-2xl font-semibold text-white">Our Values</h2>
               </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex items-start gap-3">
-                  <Users className="text-violet-600 mt-1" size={20} />
-                  <div>
-                    <h3 className="font-semibold text-slate-900">Accessibility</h3>
-                    <p className="text-slate-500">Making quality education available to all, regardless of location or background.</p>
+                {[
+                  { icon: Users, title: 'Accessibility', text: 'Removing barriers so quality education is available to everyone.' },
+                  { icon: Target, title: 'Innovation', text: 'Continuously improving how people learn through smart technology.' },
+                  { icon: Heart, title: 'Community', text: 'Building learning experiences that connect and inspire learners.' },
+                  { icon: Eye, title: 'Excellence', text: 'Delivering meaningful outcomes, not just features.' },
+                ].map(({ icon: Icon, title, text }) => (
+                  <div
+                    key={title}
+                    className="bg-[#111827] border border-[#1F2937] rounded-xl p-6"
+                  >
+                    <div className="flex items-start gap-3">
+                      <Icon className="text-[#8B5CF6] mt-1" size={22} />
+                      <div>
+                        <h3 className="font-semibold mb-1 text-white">{title}</h3>
+                        <p className="text-[#9CA3AF] text-sm leading-relaxed">{text}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Target className="text-violet-600 mt-1" size={20} />
-                  <div>
-                    <h3 className="font-semibold text-slate-900">Innovation</h3>
-                    <p className="text-slate-500">Continuously pushing the boundaries of what's possible in learning technology.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Heart className="text-violet-600 mt-1" size={20} />
-                  <div>
-                    <h3 className="font-semibold text-slate-900">Community</h3>
-                    <p className="text-slate-500">Fostering collaborative learning environments that connect learners worldwide.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Eye className="text-violet-600 mt-1" size={20} />
-                  <div>
-                    <h3 className="font-semibold text-slate-900">Excellence</h3>
-                    <p className="text-slate-500">Delivering high-quality content and experiences that drive real learning outcomes.</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </section>
 
-           <section className="mt-24">
-  <h2 className="text-2xl font-bold text-[#0A2540] mb-10 text-center">
-    Our Team
-  </h2>
+            {/* Team */}
+            <section className="mt-28">
+              <h2 className="text-2xl font-semibold text-center mb-10 text-white">
+                Our Team
+              </h2>
+              <Marquee>
+                <TeamCard name="Jane Doe" role="CEO & Founder" />
+                <TeamCard name="John Smith" role="CTO" />
+                <TeamCard name="Alice Johnson" role="Head of Education" />
+                <TeamCard name="Michael Brown" role="Product Lead" />
+              </Marquee>
+            </section>
 
-  <Marquee>
-    <TeamCard name="Jane Doe" role="CEO & Founder" />
-    <TeamCard name="John Smith" role="CTO" />
-    <TeamCard name="Alice Johnson" role="Head of Education" />
-    <TeamCard name="Michael Brown" role="Product Lead" />
-  </Marquee>
-</section>
-
-
-            <section className="mt-24">
-  <h2 className="text-2xl font-bold text-[#0A2540] mb-10 text-center">
-    Our Interns
-  </h2>
-
-  <Marquee reverse>
-    <TeamCard name="Jamison Lii" role="Fullstack Intern" />
-    <TeamCard name="Abongwa Caleb" role="FullStack Intern" />
-    <TeamCard name="Lum Blessing" role="Ui/Ux intern" />
-     <TeamCard name="Doschime Anne" role="Data Science Intern" />
-    <TeamCard name="Agbor Emmanuel" role="Frontend Intern" />
-    <TeamCard name="Nganyu Brandon" role="Frontend Intern" />
-    <TeamCard name="Gilles Bryton" role="ML Intern" />
-    <TeamCard name="Unku Stephen" role="Frontend Intern" />
-     <TeamCard name="Kambi Marcbryan" role="DevOps Intern" />
-  </Marquee>
-</section>
+            {/* Interns */}
+            <section className="mt-28">
+              <h2 className="text-2xl font-semibold text-center mb-10 text-white">
+                Our Interns
+              </h2>
+              <Marquee reverse>
+                <TeamCard name="Jamison Lii" role="Fullstack Intern" />
+                <TeamCard name="Abongwa Caleb" role="Fullstack Intern" />
+                <TeamCard name="Lum Blessing" role="UI/UX Intern" />
+                <TeamCard name="Doschime Anne" role="Data Science Intern" />
+                <TeamCard name="Agbor Emmanuel" role="Frontend Intern" />
+                <TeamCard name="Nganyu Brandon" role="Frontend Intern" />
+                <TeamCard name="Gilles Bryton" role="ML Intern" />
+                <TeamCard name="Unku Stephen" role="Frontend Intern" />
+                <TeamCard name="Kambi Marcbryan" role="DevOps Intern" />
+              </Marquee>
+            </section>
           </div>
         </div>
       </main>
-      <footer className="bg-slate-50 border-t border-slate-100 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="bg-[#007AFF] p-1.5 rounded-lg text-white">
-                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                  </svg>
-                </div>
-                <span className="text-xl font-bold tracking-tight text-[#0A2540]">QuizzyAI</span>
-              </div>
-              <p className="text-slate-500 text-sm">
-                Unlock your learning potential with AI-powered quizzes and interactive courses.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-[#0A2540] mb-4">Product</h4>
-              <ul className="space-y-2 text-sm text-slate-500">
-                <li><Link to="/features" className="hover:text-[#007AFF] transition-colors">Features</Link></li>
-                <li><Link to="/pricing" className="hover:text-[#007AFF] transition-colors">Pricing</Link></li>
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Download App</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-[#0A2540] mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-slate-500">
-                <li><Link to="/about" className="hover:text-[#007AFF] transition-colors">About Us</Link></li>
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Careers</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-[#0A2540] mb-4">Support</h4>
-              <ul className="space-y-2 text-sm text-slate-500">
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Community</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-slate-400 text-sm">
-              &copy; {new Date().getFullYear()} QuizzyAI Inc. All rights reserved. Built with love for modern learners.
+
+      {/* Footer */}
+      <footer className="bg-[#0B0F1A] border-t border-[#1F2937] py-16">
+        <div className="container mx-auto px-6 text-sm">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-[#6B7280]">
+              © {new Date().getFullYear()} Quizzy. All rights reserved.
             </p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-slate-400 hover:text-slate-600 text-sm transition-colors">Privacy Policy</Link>
-              <Link to="/terms" className="text-slate-400 hover:text-slate-600 text-sm transition-colors">Terms of Service</Link>
+            <div className="flex gap-6 text-[#6B7280]">
+              <Link to="/privacy" className="hover:text-[#9CA3AF] transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="hover:text-[#9CA3AF] transition-colors">
+                Terms of Service
+              </Link>
             </div>
           </div>
         </div>

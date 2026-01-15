@@ -7,12 +7,12 @@ type TeamCardProps = {
 
 export function TeamCard({ name, role }: TeamCardProps) {
   return (
-    <div className="w-[220px] shrink-0 rounded-xl bg-white border border-slate-100 shadow-sm px-6 py-5 text-center">
-      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 flex items-center justify-center">
-        <Users className="text-[#007AFF]" size={24} />
+    <div className="w-[220px] shrink-0 rounded-xl bg-slate-800 border border-slate-700 shadow-sm px-6 py-5 text-center">
+      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#7C3AED]/20 flex items-center justify-center">
+        <Users className="text-[#7C3AED]" size={24} />
       </div>
-      <h4 className="font-semibold text-[#0A2540]">{name}</h4>
-      <p className="text-sm text-slate-500">{role}</p>
+      <h4 className="font-semibold text-white">{name}</h4>
+      <p className="text-slate-400">{role}</p>
     </div>
   );
 }

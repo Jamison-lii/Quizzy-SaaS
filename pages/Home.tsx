@@ -23,71 +23,129 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen selection:bg-blue-100 selection:text-[#0A2540]">
+    <div className="min-h-screen bg-[#0B0F1A] text-[#E5E7EB] selection:bg-[#2563EB] selection:text-white">
       <Navbar scrolled={scrolled} />
-      <main>
+
+      <main className="overflow-hidden">
         <Hero />
+
+        {/* Soft divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-[#1F2937] to-transparent my-0" />
+
         <Features />
         <HowItWorks />
         <Courses />
+
+        <div className="h-px bg-gradient-to-r from-transparent via-[#1F2937] to-transparent my-0" />
+
         <TrustedBy />
         <Testimonials />
         <FAQ />
         <Contact />
+
         <CTASection />
       </main>
-      <footer className="bg-slate-50 border-t border-slate-100 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+
+      {/* Footer */}
+      <footer className="bg-[#0B0F1A] border-t border-[#1F2937] py-16">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
+            {/* Brand */}
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="bg-[#007AFF] p-1.5 rounded-lg text-white">
-                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-gradient-to-br from-[#4C1D95] to-[#2563EB] p-2 rounded-xl text-white">
+                  <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                   </svg>
                 </div>
-                <span className="text-xl font-bold tracking-tight text-[#0A2540]">QuizzyAI</span>
+                <span className="text-xl font-bold tracking-tight">Quizzy</span>
               </div>
-              <p className="text-slate-500 text-sm">
-                Unlock your learning potential with AI-powered quizzes and interactive courses.
+              <p className="text-sm text-[#9CA3AF] leading-relaxed">
+                Quizzy helps you learn faster and remember longer through smart,
+                interactive quizzes built for modern learners.
               </p>
             </div>
-            
+
+            {/* Product */}
             <div>
-              <h4 className="font-semibold text-[#0A2540] mb-4">Product</h4>
-              <ul className="space-y-2 text-sm text-slate-500">
-                <li><Link to="/features" className="hover:text-[#007AFF] transition-colors">Features</Link></li>
-                <li><Link to="/pricing" className="hover:text-[#007AFF] transition-colors">Pricing</Link></li>
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Download App</a></li>
+              <h4 className="font-semibold mb-4">Product</h4>
+              <ul className="space-y-2 text-sm text-[#9CA3AF]">
+                <li>
+                  <Link to="/features" className="hover:text-[#8B5CF6] transition-colors">
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/pricing" className="hover:text-[#8B5CF6] transition-colors">
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-[#8B5CF6] transition-colors">
+                    Download App
+                  </a>
+                </li>
               </ul>
             </div>
-            
+
+            {/* Company */}
             <div>
-              <h4 className="font-semibold text-[#0A2540] mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-slate-500">
-                <li><Link to="/about" className="hover:text-[#007AFF] transition-colors">About Us</Link></li>
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Careers</a></li>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-[#9CA3AF]">
+                <li>
+                  <Link to="/about" className="hover:text-[#8B5CF6] transition-colors">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-[#8B5CF6] transition-colors">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-[#8B5CF6] transition-colors">
+                    Careers
+                  </a>
+                </li>
               </ul>
             </div>
-            
+
+            {/* Support */}
             <div>
-              <h4 className="font-semibold text-[#0A2540] mb-4">Support</h4>
-              <ul className="space-y-2 text-sm text-slate-500">
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-[#007AFF] transition-colors">Community</a></li>
+              <h4 className="font-semibold mb-4">Support</h4>
+              <ul className="space-y-2 text-sm text-[#9CA3AF]">
+                <li>
+                  <a href="#" className="hover:text-[#8B5CF6] transition-colors">
+                    Help Center
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-[#8B5CF6] transition-colors">
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-[#8B5CF6] transition-colors">
+                    Community
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
-          
-          <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-slate-400 text-sm">
-              &copy; {new Date().getFullYear()} QuizzyAI Inc. All rights reserved. Built with love for modern learners.
+
+          {/* Bottom bar */}
+          <div className="border-t border-[#1F2937] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-[#6B7280]">
+              © {new Date().getFullYear()} Quizzy. All rights reserved.
             </p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-slate-400 hover:text-slate-600 text-sm transition-colors">Privacy Policy</Link>
-              <Link to="/terms" className="text-slate-400 hover:text-slate-600 text-sm transition-colors">Terms of Service</Link>
+            <div className="flex gap-6 text-sm text-[#6B7280]">
+              <Link to="/privacy" className="hover:text-[#9CA3AF] transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="hover:text-[#9CA3AF] transition-colors">
+                Terms of Service
+              </Link>
             </div>
           </div>
         </div>

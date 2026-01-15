@@ -7,28 +7,34 @@ const steps = [
   {
     title: 'Choose or Upload Material',
     desc: 'Add a PDF, text, or pick a topic to create a quiz from any content source.',
-    icon: <UploadCloud size={32} className="text-[#7C3AED]" />,
+    icon: <UploadCloud size={32} className="text-[#7C3AED] animate-pulse-slow" />,
   },
   {
     title: 'AI Generates Smart Quizzes',
     desc: 'Our AI analyzes content and creates varied question types to test comprehension.',
-    icon: <Cpu size={32} className="text-[#7C3AED]" />,
+    icon: <Cpu size={32} className="text-[#7C3AED] animate-pulse-slow" />,
   },
   {
     title: 'Practice, Track & Download',
     desc: 'Practice with adaptive quizzes, track progress, and download courses for offline use.',
-    icon: <PlayCircle size={32} className="text-[#7C3AED]" />,
+    icon: <PlayCircle size={32} className="text-[#7C3AED] animate-pulse-slow" />,
   },
 ];
 
 const HowItWorks: React.FC = () => {
   return (
-    <section id="how" className="py-28 bg-slate-900 overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section
+      id="how"
+      className="py-28 bg-slate-900 overflow-hidden relative"
+    >
+      {/* Animated shimmer background */}
+      <div className="absolute inset-0 bg-slate-900 animate-shimmer pointer-events-none"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <Reveal className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            How Quizzy Works — In Three Steps
+            How Quizzy Works
           </h2>
           <p className="text-slate-400 mt-3">
             A visual walkthrough of how you go from content to confidence.
@@ -40,8 +46,11 @@ const HowItWorks: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {steps.map((step, i) => (
               <Reveal key={i}>
-                <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-md hover:shadow-xl transition-all duration-300 text-center">
-                  <div className="mx-auto w-16 h-16 rounded-full bg-slate-700 flex items-center justify-center mb-5">
+                <div className={`bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-md text-center 
+                  transition-all duration-500 hover:shadow-xl hover:scale-105`}
+                  style={{ animationDelay: `${i * 0.2}s` }}
+                >
+                  <div className="mx-auto w-16 h-16 rounded-full bg-slate-700 flex items-center justify-center mb-5 animate-bounce-slow">
                     {step.icon}
                   </div>
                   <h4 className="font-semibold text-white text-lg">{step.title}</h4>
@@ -53,7 +62,7 @@ const HowItWorks: React.FC = () => {
 
           {/* Floating card with visual mock */}
           <div className="hidden lg:block">
-            <FloatingCard className="absolute right-1 -translate-x-1/2 -top-48 w-80" delay={0.2}>
+            <FloatingCard className="absolute right-1 -translate-x-1/2 -top-48 w-80 animate-float" delay={0.2}>
               <div className="w-full h-48 bg-gradient-to-br from-[#7C3AED] to-[#4F46E5] rounded-2xl flex items-center justify-center text-white shadow-lg">
                 <div className="text-center">
                   <div className="text-sm font-bold">Quiz Preview</div>
@@ -66,6 +75,42 @@ const HowItWorks: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Animations */}
+      <style>
+        {`
+          /* Floating card gently up and down */
+          @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+          }
+          .animate-float { animation: float 4s ease-in-out infinite; }
+
+          /* Icons pulsing */
+          @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.15); opacity: 1; }
+          }
+          .animate-pulse-slow { animation: pulse-slow 2.5s ease-in-out infinite; }
+
+          /* Background shimmer */
+          @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+          }
+          .animate-shimmer { 
+            background-size: 200% 100%;
+            animation: shimmer 8s linear infinite; 
+          }
+
+          /* Bounce slow for step card icons */
+          @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+          }
+          .animate-bounce-slow { animation: bounce-slow 3s ease-in-out infinite; }
+        `}
+      </style>
     </section>
   );
 };

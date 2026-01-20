@@ -10,6 +10,8 @@ import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 import CTASection from '../components/CTASection';
+import Problem from '../components/Problem';
+import WhoItsForSlider from '@/components/WhoItsForSlider';
 
 const Home: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -29,20 +31,55 @@ const Home: React.FC = () => {
       <main className="overflow-hidden">
         <Hero />
 
-        {/* Soft divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-[#1F2937] to-transparent my-0" />
 
+        <Problem />
         <Features />
         <HowItWorks />
-        <Courses />
+        <WhoItsForSlider />
 
         <div className="h-px bg-gradient-to-r from-transparent via-[#1F2937] to-transparent my-0" />
 
-        <TrustedBy />
-        <Testimonials />
-        <FAQ />
-        <Contact />
+        {/* TrustedBy with fade-in animation */}
+        <div className=" opacity-0 animate-fadeIn scroll-animate">
+          <p className="text-center text-slate-400 mb-6 max-w-xl mx-auto text-sm">
+            Companies and institutions trust QuizzyAI to improve learning outcomes.
+          </p>
+          <TrustedBy />
+        </div>
 
+        {/* Testimonials with fade-in */}
+        <div className=" opacity-0 animate-fadeIn scroll-animate">
+          <Testimonials />
+        </div>
+
+        {/* Courses with context line and fade-in */}
+        <div className=" opacity-0 animate-fadeIn scroll-animate">
+          <Courses />
+        </div>
+
+        <div className="h-px bg-gradient-to-r from-transparent via-[#1F2937] to-transparent my-0" />
+
+        {/* FAQ and Contact with fade-in */}
+        <div className=" opacity-0 animate-fadeIn scroll-animate">
+          <FAQ />
+        </div>
+
+        <div className=" opacity-0 animate-fadeIn scroll-animate">
+          <Contact />
+        </div>
+
+        {/* Optional secondary CTA mid-page */}
+        <div className=" text-center opacity-0 animate-fadeIn scroll-animate">
+          <Link
+            to="#download"
+            className="bg-gradient-to-r from-[#7C3AED] to-[#4F46E5] text-white px-8 py-3 rounded-full font-semibold hover:from-[#9D4EDD] hover:to-[#6366F1] transition-all duration-300 shadow-lg"
+          >
+            Start Learning Today
+          </Link>
+        </div>
+
+        {/* Main CTA */}
         <CTASection />
       </main>
 
@@ -150,6 +187,42 @@ const Home: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* Animations */}
+      <style>
+        {`
+          .scroll-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+          }
+          .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-fadeIn {
+            animation: fadeIn 0.8s forwards;
+          }
+        `}
+      </style>
+      <script>
+        {`
+          const elements = document.querySelectorAll('.scroll-animate');
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+              }
+            });
+          }, { threshold: 0.1 });
+          elements.forEach(el => observer.observe(el));
+        `}
+      </script>
     </div>
   );
 };

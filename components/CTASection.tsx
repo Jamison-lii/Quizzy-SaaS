@@ -5,13 +5,15 @@ const CTASection: React.FC = () => {
   return (
     <section id="download" className="py-28 text-center bg-slate-900">
       <div className="container mx-auto px-4">
+        {/* Header */}
         <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
           Ready to start learning?
         </h3>
         <p className="text-slate-400 mb-12 max-w-2xl mx-auto text-lg">
-          Join thousands of learners already using QuizzyAI to achieve their goals.
+          Join thousands of learners already using QuizzyAI to achieve their goals and boost retention.
         </p>
 
+        {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
           {/* Sign Up Button */}
           <a
@@ -30,6 +32,11 @@ const CTASection: React.FC = () => {
             <ArrowRight size={20} className="text-slate-300" />
           </a>
         </div>
+
+        {/* Micro-copy below buttons */}
+        <p className="text-xs text-slate-500 mt-6 max-w-sm mx-auto">
+          No credit card required • Instant access • Trusted by learners worldwide
+        </p>
       </div>
     </section>
   );

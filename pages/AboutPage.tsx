@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { Target, Eye, Heart, Users } from 'lucide-react';
-import Marquee from "@/components/Marquee";
-import { TeamCard } from "@/components/TeamCard";
+import Marquee from "../components/Marquee";
+import { TeamCard } from "../components/TeamCard";
 
 const AboutPage: React.FC = () => {
   const [scrolled, setScrolled] = React.useState(false);

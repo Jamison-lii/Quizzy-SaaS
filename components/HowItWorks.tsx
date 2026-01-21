@@ -44,7 +44,8 @@ const HowItWorks: React.FC = () => {
           </div>
 
           {/* Visual path with floating phone mock */}
-          <div className="hidden lg:block">
+        {/*
+             <div className="hidden lg:block">
             <FloatingCard className="absolute left-1/2 -translate-x-1/2 -bottom-20 w-72" delay={0.2}>
               <div className="w-full h-44 bg-gradient-to-br from-violet-600 to-slate-900 rounded-2xl flex items-center justify-center text-white">
                 <div className="text-center">
@@ -54,6 +55,7 @@ const HowItWorks: React.FC = () => {
               </div>
             </FloatingCard>
           </div>
+        */}  
         </div>
       </div>
     </section>
